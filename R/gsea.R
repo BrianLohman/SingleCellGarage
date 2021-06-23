@@ -10,8 +10,10 @@
 #' @param database Table of genes to use when gathering annotations. Default is hciRdata::human100
 #'
 #' @examples
+#' \dontrun{
 #' sc_results = prep_sc_DE_for_fgsea(markers = markers, contrast = "cluster 4 vs. cluster 0")
 #' fgsea_all(res = sc_results, gsets = msig_pathways$KEGG, FDR = 0.1, nperm = 10000)
+#' }
 #'
 #' @export
 

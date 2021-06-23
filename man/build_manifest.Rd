@@ -15,6 +15,8 @@ Returns named list where each sample has paths to peaks.bed, singlecell.csv, and
 Also possible to build list or make corrections manually
 }
 \examples{
+\dontrun{
 m = build_manifest(pattern = "18655")
+}
 
 }

@@ -7,7 +7,9 @@
 #' @param pattern Common string among all samples
 #'
 #' @examples
+#' \dontrun{
 #' m = build_manifest(pattern = "18655")
+#' }
 #'
 #' @export
 
@@ -45,7 +47,9 @@ build_manifest <- function(pattern = NULL){
 #' @param project Name to give merged sample set
 #'
 #' @examples
+#' \dontrun{
 #' srt = build_10X_atac(manifest = m, genome = "GRCh38", project = "A6440")
+#' }
 #'
 #' @export
 

@@ -18,6 +18,8 @@ Takes file manifest from build_manifest
 following preffered merge procedure in Signac: https://satijalab.org/signac/articles/merging.html#merge-fragment-files-1
 }
 \examples{
+\dontrun{
 srt = build_10X_atac(manifest = m, genome = "GRCh38", project = "A6440")
+}
 
 }

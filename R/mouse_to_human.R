@@ -9,7 +9,9 @@
 #' @param only_named Return only genes with human homologs. Defalt is TRUE
 #'
 #' @example
+#' \dontrun{
 #' human_orthologs = loupe_mouse_to_human(loupe_export = "my_markers.csv")
+#' }
 #'
 #' @export
 
