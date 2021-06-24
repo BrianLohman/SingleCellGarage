@@ -21,9 +21,9 @@ percent_table = function(df = df, by = "Row", transpose = TRUE) {
     df = apply(as.matrix.noquote(df),2,as.numeric)
   } else{
     if(by == "Row"){
-      df = apply(df, 1, FUN = function(x) {x/colSums(m)*100})
+      df = apply(df, 1, FUN = function(x) {x/colSums(df)*100})
     } else {
-      df = apply(df, 2, FUN = function(x) {x/rowSums(m)*100})
+      df = apply(df, 2, FUN = function(x) {x/rowSums(df)*100})
       }
     }
   if(transpose == TRUE){
