@@ -2,6 +2,7 @@
 
 export(build_10x_atac)
 export(build_manifest)
+export(export_umap)
 export(loupe_mouse_to_human)
 export(percent_table)
 export(prep_sc_DE_for_fgsea)
