@@ -1,7 +1,7 @@
 # SingleCellGarage
 My R package of utilities for working with single cell data
   
-Use 'devtools' to intall 'SingleCellGarage'
+Use `devtools` to intall `SingleCellGarage`
   
 ```r
 library(devtools)
