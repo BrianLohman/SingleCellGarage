@@ -164,3 +164,46 @@ build_10x_atac <- function(manifest = NULL, genome = NULL, project = NULL){
 
   return(srt)
 }
+
+#' Read in multiple 10X scRNAsea samples
+#'
+#' Searches for pattern in current working directory and returns list of Seurat objects
+#'
+#' @param pattern The pattern to search for in current working dicrectory, e.g, run number
+#' @param min_cell Seurat min.cells
+#' @param min_features Seurat min.features
+#' @param outs Include the "outs" in the full path to filtered barcode files. Default is FALSE
+#'
+#' @examples
+#' \dontrun{
+#' srt_list = read10X_multiple(pattern = "18560X)
+#' }
+#'
+#' @export
+#'
+#'
+read10X_multiple = function(pattern = NULL, min_cells = 0, min_features = 0, outs = FALSE){
+  if(is.null(pattern)){
+    stop("sample search pattern not defined")
+  }
+  # list directories matching pattern
+  dirs <- list.files(pattern = pattern)
+
+  # get sample names
+  srt_list = vector(length = length(dirs), mode = "list")
+  names(srt_list) = dirs
+
+  # load each sample
+  for(i in 1:length(dirs)){
+    print(paste("loading", names(samples)[i]))
+    if(outs == TRUE){
+      path = Read10X(data.dir = paste(dirs[i], "outs","filtered_feature_bc_matrix", sep = "/"))
+    } else {
+      path = Read10X(data.dir = paste(dirs[i], "filtered_feature_bc_matrix", sep = "/"))
+    }
+    srt_list[[i]] = CreateSeuratObject(counts = path, project = dirs[i], min.cells = min_cells, min.features = min_features)
+  }
+
+  return(srt_list)
+}
+
