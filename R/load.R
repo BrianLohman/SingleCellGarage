@@ -43,27 +43,22 @@ build_manifest <- function(pattern = NULL){
 #' following preffered merge procedure in Signac: https://satijalab.org/signac/articles/merging.html#merge-fragment-files-1
 #'
 #' @param manifest The file manifest from build_manifest or a list of named lists where each entry is a sample with peaks.bed, singlecell.csv and fragments
-#' @param genome The version of the genome that samples were mapped to
 #' @param project Name to give merged sample set
 #'
 #' @examples
 #' \dontrun{
-#' srt = build_10X_atac(manifest = m, genome = "GRCh38", project = "A6440")
+#' srt = build_10X_atac(manifest = m, project = "A6440")
 #' }
 #'
 #' @export
 
-build_10x_atac <- function(manifest = NULL, genome = NULL, project = NULL){
+build_10x_atac <- function(manifest = NULL, project = NULL){
   if(is.null(manifest)){
     stop("file manifest undefined")
   }
 
   if(is.null(project)){
     stop("project undefined")
-  }
-
-  if(is.null(genome)){
-    stop("genome undefined")
   }
 
   # assign file manifest
@@ -149,7 +144,7 @@ build_10x_atac <- function(manifest = NULL, genome = NULL, project = NULL){
   names(seurat_list) = names(m)
 
   for(i in names(seurat_list)){
-    tmp = CreateChromatinAssay(counts_list[[i]], fragments = fragments_list[[i]], genome = genome)
+    tmp = CreateChromatinAssay(counts_list[[i]], fragments = fragments_list[[i]])
     seurat_list[[i]] = CreateSeuratObject(tmp, assay = "ATAC", project = i, meta.data = metadata_list[[i]])
   }
 

@@ -4,12 +4,10 @@
 \alias{build_10x_atac}
 \title{Read in multiple 10X ATAC samples with Signac and merge with common peak set}
 \usage{
-build_10x_atac(manifest = NULL, genome = NULL, project = NULL)
+build_10x_atac(manifest = NULL, project = NULL)
 }
 \arguments{
 \item{manifest}{The file manifest from build_manifest or a list of named lists where each entry is a sample with peaks.bed, singlecell.csv and fragments}
-
-\item{genome}{The version of the genome that samples were mapped to}
 
 \item{project}{Name to give merged sample set}
 }
@@ -19,7 +17,7 @@ following preffered merge procedure in Signac: https://satijalab.org/signac/arti
 }
 \examples{
 \dontrun{
-srt = build_10X_atac(manifest = m, genome = "GRCh38", project = "A6440")
+srt = build_10X_atac(manifest = m, project = "A6440")
 }
 
 }
