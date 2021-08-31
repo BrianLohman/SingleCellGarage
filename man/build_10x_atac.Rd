@@ -15,6 +15,11 @@ build_10x_atac(manifest = NULL, project = NULL)
 Takes file manifest from build_manifest
 following preffered merge procedure in Signac: https://satijalab.org/signac/articles/merging.html#merge-fragment-files-1
 }
+\details{
+"Fail to connect" or "Network is unreachable" errors are likely the result of a curl command reaching for the annotation
+but unable to connect to the server, possibly becuase of firewall issues. Try running the annotation block on a laptop
+outside of a firewall and then import the result back into the main notebook.
+}
 \examples{
 \dontrun{
 srt = build_10X_atac(manifest = m, project = "A6440")

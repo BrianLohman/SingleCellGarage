@@ -42,6 +42,10 @@ build_manifest <- function(pattern = NULL){
 #' Takes file manifest from build_manifest
 #' following preffered merge procedure in Signac: https://satijalab.org/signac/articles/merging.html#merge-fragment-files-1
 #'
+#' "Fail to connect" or "Network is unreachable" errors are likely the result of a curl command reaching for the annotation
+#'  but unable to connect to the server, possibly becuase of firewall issues. Try running the annotation block on a laptop
+#'  outside of a firewall and then import the result back into the main notebook.
+#'
 #' @param manifest The file manifest from build_manifest or a list of named lists where each entry is a sample with peaks.bed, singlecell.csv and fragments
 #' @param project Name to give merged sample set
 #'
@@ -77,7 +81,7 @@ build_10x_atac <- function(manifest = NULL, project = NULL){
   }
 
   # convert to genomic ranges
-  print("converting to genomic ranges and building unifed set")
+  print("converting to genomic ranges and building unified set")
   gr_list = vector(mode = "list", length = length(m))
   names(gr_list) = names(m)
 
