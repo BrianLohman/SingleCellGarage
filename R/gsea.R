@@ -18,7 +18,7 @@
 #'
 #' @export
 
-prep_sc_DE_for_fgsea = function(markers = markers, contrast = NULL, database = hciRdata::human100, human_homolog = FALSE){
+prep_sc_DE_for_fgsea = function(markers = markers, contrast = NULL, database = hciRdata::human100, human_homolog = FALSE, protein_coding = TRUE){
     # check that contrast is named
     if(is.null(contrast)){
         stop("contrast must be name: e.g., cluster_1 vs cluster_2")
@@ -30,10 +30,16 @@ prep_sc_DE_for_fgsea = function(markers = markers, contrast = NULL, database = h
     # reformat for fgsea_all and merge in the annotations
     if(human_homolog == FALSE){
         res = merge(markers[, c(1:3,6)], database[, c(1:4,8)], by = "gene_name")
+        if(protein_coding == TRUE){
+            res = res[res$biotype == "protein_coding" ,]
+        }
     } else {
         res = merge(markers[, c(1:3,6)], database[, c(1:4,8,10)], by = "gene_name")
         res$gene_name = res$human_homolog
         res = res[!is.na(res$gene_name) ,]
+        if(protein_coding == TRUE){
+            res = res[res$biotype == "protein_coding" ,]
+        }
     }
 
     # set column name of the log2fold change to match expected by fgsea_all

@@ -8,7 +8,8 @@ prep_sc_DE_for_fgsea(
   markers = markers,
   contrast = NULL,
   database = hciRdata::human100,
-  human_homolog = FALSE
+  human_homolog = FALSE,
+  protein_coding = TRUE
 )
 }
 \arguments{
