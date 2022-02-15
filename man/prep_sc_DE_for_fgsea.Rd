@@ -7,7 +7,8 @@
 prep_sc_DE_for_fgsea(
   markers = markers,
   contrast = NULL,
-  database = hciRdata::human100
+  database = hciRdata::human100,
+  human_homolog = FALSE
 )
 }
 \arguments{
@@ -16,6 +17,8 @@ prep_sc_DE_for_fgsea(
 \item{contrast}{The name of the contrast}
 
 \item{database}{Table of genes to use when gathering annotations. Default is hciRdata::human100}
+
+\item{human_homolog}{Convert the gene names to human homologs. Default is FALSE}
 }
 \description{
 This function assumes that a user has run Seurat's FindMarkers to
