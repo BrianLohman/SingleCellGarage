@@ -77,3 +77,38 @@ export_umap = function(srt = srt, embeddings_file = "umap_embeddings.csv", clust
   write.csv(cluster_id, file = cluster_id_file, quote = FALSE)
 
 }
+
+
+#' Save the results of FindAllMarkers to Excel
+#'
+#' The large table produced by FindAllMarkers is split by cluster and saved to Excel
+#' When file name is provided the named output is Excel
+#' Returns list when file name not provided
+#'
+#' @param markers The product of Seurat's FindAllMarkers function
+#' @param file Name of Excel file. If absent, the default, returns list
+#'
+#' @examples
+#' \dontrun{
+#' write_FindAllMarkers(markers = markers, file = "markers.xlsx")
+#' }
+#'
+#' @export
+#'
+write_FindAllMarkers = function(markers = markers, file = NA) {
+  # split the large markers data frame by cluster into list elements
+  markers_list = vector(mode = "list", length = length(unique(markers$cluster)))
+  for(i in 0:(length(markers_list)-1)) {
+    markers_list[[i+1]] = markers[markers$cluster == i ,]
+  }
+
+  # if file name not provided then return list else write to file
+  if(is.na(file)){
+    names(markers_list) = paste("cluster ", seq(0,length(unique(markers$cluster))-1,1), sep = "_")
+    return(markers_list)
+  } else {
+    # write to Excel, one sheet per cluster
+    message(paste("saving", file, sep = " "))
+    openxlsx::write.xlsx(x = markers_list, file = file, sheetName = paste("cluster ", seq(0,length(unique(markers$cluster))-1,1), sep = ""), row.names = TRUE)
+  }
+}
